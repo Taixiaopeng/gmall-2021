@@ -1,5 +1,8 @@
 package com.atguigu.constants;
 
+/**
+ *  - 声明常量
+ */
 public class GmallConstants {
     // TODO: 2021/4/16 启动数据去重 
     public static final String KAFKA_TOPIC_STARTUP = "GMALL_STARTUP";

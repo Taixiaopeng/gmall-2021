@@ -1,5 +1,4 @@
 package com.atguigu.app
-
 import com.alibaba.fastjson.JSON
 import com.atguigu.beau.StartUpLog
 import com.atguigu.constants.GmallConstants
@@ -11,10 +10,8 @@ import org.apache.phoenix.spark.toProductRDDFunctions
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
-
 import java.text.SimpleDateFormat
 import java.util.Date
-
 object DauAPP {
   def main(args: Array[String]): Unit = {
     // TODO: 1.创建SparkConf
@@ -41,9 +38,7 @@ object DauAPP {
       }
 
     )
-    // TODO: ？
     startUpLogDStream.cache()
-
     // TODO: 5. 跨批次去重
     val filterByRedisDStream: DStream[StartUpLog] = DauHandler.fileterByRedis(startUpLogDStream, ssc.sparkContext)
     filterByRedisDStream.cache()
