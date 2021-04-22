@@ -3,6 +3,9 @@ package com.atguigu.utils
 import java.io.InputStreamReader
 import java.util.Properties
 
+/**
+ * 加载配置配文件
+ */
 object PropertiesUtil {
 
   def load(propertieName: String): Properties = {
