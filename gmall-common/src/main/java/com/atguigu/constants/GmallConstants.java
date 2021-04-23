@@ -17,4 +17,7 @@ public class GmallConstants {
     public static final String KAFKA_TOPIC_ORDER_DETAIL = "TOPIC_ORDER_DETAIL";
     // TODO: 用户主题
     public static final String KAFKA_TOPIC_USER = "TOPIC_USER_INFO";
+    //灵活分析Index
+    public static final String ES_INDEX_DETAIL = "gmall2021_sale_detail";
+
 }

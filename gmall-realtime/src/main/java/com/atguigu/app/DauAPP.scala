@@ -12,6 +12,7 @@ import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import java.text.SimpleDateFormat
 import java.util.Date
+
 object DauAPP {
   def main(args: Array[String]): Unit = {
     // TODO: 1.创建SparkConf
@@ -29,14 +30,15 @@ object DauAPP {
           val startUpLog: StartUpLog = JSON.parseObject(record.value(), classOf[StartUpLog])
           // TODO: b. 补全LogDate和LogHour需要对时间戳做格式化
           //        yyyy-MM-dd HH
+          //          2021-04-22 22
           val times: String = sdf.format(new Date(startUpLog.ts))
+          println(times)
           // TODO: 补全logDate LogHour
           startUpLog.LogDate = times.split(" ")(0)
           startUpLog.LogHour = times.split(" ")(1)
           startUpLog
         })
       }
-
     )
     startUpLogDStream.cache()
     // TODO: 5. 跨批次去重
@@ -47,7 +49,7 @@ object DauAPP {
     // TODO: 去重后的数据条数
     filterByRedisDStream.count().print()
     // TODO: 6. 批次内去重
-    val  filterByMidDStream: DStream[StartUpLog] = DauHandler.fileterByMid(filterByRedisDStream)
+    val filterByMidDStream: DStream[StartUpLog] = DauHandler.fileterByMid(filterByRedisDStream)
     filterByMidDStream.cache()
     filterByMidDStream.count().print()
     // TODO: 7. 将去重后的数据写入Redis ,方便下批次的数据去做去重
@@ -59,7 +61,6 @@ object DauAPP {
         Seq("MID", "UID", "APPID", "AREA", "OS", "CH", "TYPE", "VS", "LOGDATE", "LOGHOUR", "TS"),
         HBaseConfiguration.create,
         Some("hadoop102,hadoop103,hadoop104:2181")
-
       )
     )
     ssc.start()

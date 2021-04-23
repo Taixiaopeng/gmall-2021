@@ -102,6 +102,7 @@ object AlertApp {
     couponAlertDStream.foreachRDD(rdd => {
       rdd.foreachPartition(partition => {
         val list: List[(String, CouponAlertInfo)] = partition.toList.map(coupon => {
+
           (coupon.mid + coupon.ts / 1000 / 60, coupon)
 
         })

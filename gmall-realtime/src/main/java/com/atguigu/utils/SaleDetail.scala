@@ -5,6 +5,21 @@ import com.atguigu.beau.{OrderDetail, OrderInfo,UserInfo}
 import java.text.SimpleDateFormat
 import java.util
 
+/**
+ * 宽表
+ * @param order_detail_id
+ * @param order_id
+ * @param order_status
+ * @param create_time
+ * @param user_id
+ * @param sku_id
+ * @param user_gender
+ * @param user_age
+ * @param user_level
+ * @param sku_price
+ * @param sku_name
+ * @param dt
+ */
 case class SaleDetail(
                        var order_detail_id:String =null,
                        var order_id: String=null,
